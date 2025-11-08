@@ -1,0 +1,36 @@
+services:
+  #--- Servicio de la Aplicación Django ---
+  web:
+    build: .  # Indica a Compose que construya una imagen desde el 'Dockerfile' en este directorio
+    volumes:
+      - .:/app  # Monta tu código local en /app dentro del contenedor
+                # (los cambios en tu código se reflejan al instante)
+    ports:
+      - "8000:8000" # Mapea el puerto 8000 de tu máquina al 8000 del contenedor
+    environment:
+      # Variables de entorno que Django usará para conectarse a la DB
+      - DB_HOST=db
+      - DB_NAME=mi_base_de_datos
+      - DB_USER=mi_usuario_db
+      - DB_PASS=mi_contraseña_segura
+    depends_on:
+      - db  # Le dice a Docker que inicie el servicio 'db' ANTES que el servicio 'web'
+    command: sleep infinity
+
+  #--- Servicio de la Base de Datos PostgreSQL ---
+  db:
+    image: postgres:14-alpine  # Usa una imagen oficial y ligera de Postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/ # Persiste los datos de la DB en un volumen
+    ports:
+      - "5432:5432" # Mapea el puerto 5432 de tu
+    environment:
+      # Estas variables son usadas por la imagen de Postgres para inicializar la DB
+      - POSTGRES_DB=mi_base_de_datos
+      - POSTGRES_USER=mi_usuario_db
+      - POSTGRES_PASSWORD=mi_contraseña_segura
+
+#--- Volúmenes ---
+# Define el volumen 'postgres_data' para que tus datos no se pierdan al apagar el contenedor
+volumes:
+  postgres_data:
