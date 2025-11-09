@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock title %}</title>
+    <link rel="shortcut icon" href="{% static 'assets/images/icon/fav.svg' %}" type="image/x-icon">
+
+    <link rel="stylesheet preload" href="{% static 'assets/css/plugins/fontawesome-5.css' %}" as="style">
+    <link rel="stylesheet preload" href="{% static 'assets/css/vendor/bootstrap.min.css' %}" as="style">
+    <link rel="stylesheet preload" href="{% static 'assets/css/vendor/swiper.css' %}" as="style">
+    <link rel="stylesheet preload" href="{% static 'assets/css/vendor/metismenu.css' %}" as="style">
+    <link rel="stylesheet preload" href="{% static 'assets/css/vendor/fonts.css' %}" as="style">
+    <link rel="stylesheet preload" href="{% static 'assets/css/vendor/magnific-popup.css' %}" as="style">
+    <link rel="stylesheet preload" href="{% static 'assets/css/style.css' %}" as="style">
+</head>
+
+<body class="home-three">
+    <!-- Start Header Area -->
+
+    {% include "components/header.html" %}
+    <!-- End Top Header Area -->
+
+    <!-- side bar for desktop -->
+    {% include "components/sidebar.html" %}
+    <!-- header style two End -->
+
+    <!-- Start Subscribe Popup Box -->
+    {% include "components/suscription-popup.html" %}
+    <!-- End Subscribe Popup Box -->
+    <!-- End Header Area -->
+    {% block content %}
+    {% endblock content %}
+
+    {% include 'components/footer.html'%}
+    <!-- End Footer Area -->
+    <!-- End Footer Area -->
+
+    <!-- Start Scricpt Area -->
+
+    <!--scroll top button-->
+    {% include 'components/scroll-button.html' %}
+    <!--scroll top button end-->
+
+    <div id="anywhere-home"></div>
+
+    <script src="{% static 'assets/js/vendor/jquery.min.js' %}" defer></script>
+    <script src="{% static 'assets/js/plugins/audio.js' %}" defer></script>
+    <script src="{% static 'assets/js/vendor/bootstrap.min.js' %}" defer></script>
+    <script src="{% static 'assets/js/vendor/swiper.js' %}" defer></script>
+    <script src="{% static 'assets/js/vendor/metisMenu.min.js' %}" defer></script>
+    <script src="{% static 'assets/js/plugins/audio.js' %}" defer></script>
+    <script src="{% static 'assets/js/plugins/magnific-popup.js' %}" defer></script>
+    <script src="{% static 'assets/js/plugins/contact-form.js' %}" defer></script>
+    <script src="{% static 'assets/js/plugins/resize-sensor.min.js' %}" defer></script>
+    <script src="{% static 'assets/js/plugins/theia-sticky-sidebar.min.js' %}" defer></script>
+
+    <!-- main js file -->
+    <script src="{% static 'assets/js/main.js' %}" defer></script>
+    <!-- End Footer Area -->
+
+</body>
+
+</html>

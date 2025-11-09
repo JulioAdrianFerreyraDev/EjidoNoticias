@@ -4,6 +4,7 @@ from django.urls.resolvers import URLPattern
 from . import views
 
 urlpatterns: list[URLPattern] = [
-    path(route='', view=views.index, name='index')
+    path(route='', view=views.index, name='index'),
+    path(route='blog/<str:slug>/', view=views.blog, name='blog'),
     
 ]
