@@ -4,28 +4,7 @@
 
 {% block content %}
 <body class="home-inner">
-    <!-- Start Header Area -->
 
-    <!-- rts breadcrumba area start -->
-    <div class="eblog-breadcrumb-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- bread crumb inner wrapper -->
-                    <div class="breadcrumb-inner text-center">
-                        <div class="meta">
-                            <a href="#" class="prev">Home</a>
-                            <img src="assets/images/icon/chevron-right.svg" alt="">
-                            <a href="#" class="next">Blog</a>
-                            <img src="assets/images/icon/chevron-right.svg" alt="">
-                            <a href="#" class="last">Blog Details</a>
-                        </div>
-                    </div>
-                    <!-- bread crumb inner wrapper end -->
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- rts breadcrumba area end -->
     <!-- End Breadcrumb Area -->
 
@@ -39,12 +18,12 @@
                             <div class="eblog-hero-banner">
                                 <div class="image-area">
                                     <a href="#">
-                                        <img src="{{blog.banner_image_url}}" alt="">
+                                        <img src="{{blog.banner.url}}" alt="{{blog.titulo}}">
                                     </a>
                                 </div>
                                 <div class="blog-content-area">
                                     <ul class="blog-meta">
-                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
+                                        <li class="author"><span>BY</span>{{blog.autor}} - {{blog.fecha_publicacion}}</li>
                                         <li>
                                             <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g clip-path="url(#clip0_4238_1230)">
@@ -64,7 +43,7 @@
                                                 <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
                                                 <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
                                             </svg>
-                                            1.9k views
+                                            {{blog.vistas}} vistas
                                         </li>
                                     </ul>
                                     <div class="eblog-social">
@@ -115,8 +94,8 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <h2 class="heading-title">{{blog.title}}</h2>
-                                <p class="desc">About one year ago, my wife and I discovered black mold in our kitchen and it was horrifying. We immediately cleaned & disinfected the everything in the cabinets to make sure that the mold was gone. Two weeks later, all of the mold was back and it was frustrating because we didn’t know where it was coming from. We ended up cleaning it all again, praying that it wouldn’t return.</p>
+                                <h2 class="heading-title">{{blog.titulo}}</h2>
+                                <p class="desc">{{blog.contenido|safe}}</p>
                                 <p class="desc">A few weeks later, I was throwing our trash away outside and as I walked toward the back of the house, I heard what sounded like water spraying on the ground. I got closer to the sound and realized it was coming from under our house. So I looked through one of the vents under our house and saw that one of our hot water pipes was shooting water under our house.</p>
                                 <div class="row g-5 mt--10 mb--10">
                                     <div class="col-lg-5">
@@ -304,7 +283,7 @@
                                                         </clipPath>
                                                     </defs>
                                                 </svg>
-                                                3 Minute Read
+                                                {{blog.tiempo_lectura}} {% if blog.tiempo_lectura > 60 %} horas{% else %} minutos{% endif %}
                                             </li>
                                             <li>
                                                 <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
