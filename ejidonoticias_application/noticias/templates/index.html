@@ -7,6 +7,9 @@
 
 
 {% block content %}
+
+    {% include "components/landing/header.html" %}
+
 {% include "components/landing/banner.html" with noticias=content|slice:":3" %}
     <!-- Start Banner Area -->
     <!-- End Banner Area -->
