@@ -1,0 +1,6 @@
+{% load static %}
+
+<svg width="{{width|default:15}}" height="{{height|default:15}}" viewBox="{{viewBox|default:'0 0 15 15'}}"
+    fill="{{fill_color|default:'white'}}">
+    <use href="{%static "assets/svg/icons.svg"%}#icon-{{icon_name|default:'instagram'}}"></use>
+</svg>

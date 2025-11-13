@@ -19,31 +19,21 @@
 </head>
 
 <body class="home-three">
-    <!-- Start Header Area -->
 
 
-    <!-- End Top Header Area -->
 
-    <!-- side bar for desktop -->
-    {% include "components/sidebar.html" %}
-    <!-- header style two End -->
+    {% include "components/shared/sidebar.html" %}
 
-    <!-- Start Subscribe Popup Box -->
-    {% include "components/suscription-popup.html" %}
-    <!-- End Subscribe Popup Box -->
-    <!-- End Header Area -->
+
+    {% include "components/shared/suscription-popup.html" %}
+    
     {% block content %}
     {% endblock content %}
 
-    {% include 'components/footer.html'%}
-    <!-- End Footer Area -->
-    <!-- End Footer Area -->
+    {% include 'components/shared/footer.html'%}
+ 
+    {% include 'components/shared/scroll-button.html' %}
 
-    <!-- Start Scricpt Area -->
-
-    <!--scroll top button-->
-    {% include 'components/scroll-button.html' %}
-    <!--scroll top button end-->
 
     <div id="anywhere-home"></div>
 
@@ -58,9 +48,7 @@
     <script src="{% static 'assets/js/plugins/resize-sensor.min.js' %}" defer></script>
     <script src="{% static 'assets/js/plugins/theia-sticky-sidebar.min.js' %}" defer></script>
 
-    <!-- main js file -->
     <script src="{% static 'assets/js/main.js' %}" defer></script>
-    <!-- End Footer Area -->
 
 </body>
 

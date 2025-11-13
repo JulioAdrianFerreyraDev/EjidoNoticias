@@ -10,6 +10,12 @@ class Categoria(models.Model):
     nombre = models.CharField(max_length=100, unique=True, verbose_name="Nombre")
     slug = models.SlugField(max_length=100, unique=True, db_index=True,
                             help_text="Usado para las URLs. Ej: 'deportes'")
+    banner = models.ImageField(
+        upload_to='categorias/%Y/%m/%d/',
+        verbose_name="Banner Principal",
+        help_text="Imagen principal de la categoría.",
+        default="https://placehold.co/616x256?text=Categoría"
+    )
 
     class Meta:
         verbose_name = "Categoría"
