@@ -7,43 +7,30 @@
                         <div class="left-side-post-area">
                             <div class="featured-post area-2 tp-section-gap3Bottom">
                                 <div class="section-title-area">
-                                    <h3 class="section-title">Life Style</h3>
+                                    <h3 class="section-title">Más visto</h3>
                                 </div>
                                 <div class="post-section-inner">
                                     <div class="row g-5">
                                         <div class="col-lg-12">
                                             <div class="eblog-featured-news style-two">
                                                 <div class="image-area">
-                                                    <a href="#"><img src="{%static 'assets/images/blog/49.jpg'%}" alt=""></a>
-                                                    <p class="tag">Freedom</p>
+                                                    <a href="{% url "blog" mas_visto.slug %}"><img src="{{ mas_visto.banner.url }}" alt="{{ mas_visto.titulo }}"></a>
+                                                    <p class="tag">{{ mas_visto.categoria.nombre }}</p>
                                                 </div>
                                                 <div class="blog-content text-left">
                                                     <ul class="blog-meta">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
+                                                        <li class="author"><span>BY</span>{{ mas_visto.autor }} - {{ mas_visto.fecha_publicacion|date:"b j, Y" }}</li>
                                                         <li>
-                                                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <g clip-path="url(#clip0_4238_1233)">
-                                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.85407 12.9565C4.93327 13.6776 6.20206 14.0625 7.5 14.0625C9.24049 14.0625 10.9097 13.3711 12.1404 12.1404C13.3711 10.9097 14.0625 9.24049 14.0625 7.5C14.0625 6.20206 13.6776 4.93327 12.9565 3.85407C12.2354 2.77488 11.2105 1.93374 10.0114 1.43704C8.81222 0.940343 7.49272 0.810384 6.21972 1.0636C4.94672 1.31682 3.7774 1.94183 2.85961 2.85961C1.94183 3.7774 1.31682 4.94672 1.0636 6.21972C0.810384 7.49272 0.940343 8.81222 1.43704 10.0114C1.93374 11.2105 2.77488 12.2354 3.85407 12.9565ZM4.37492 2.82299C5.29995 2.2049 6.38748 1.875 7.5 1.875C8.99185 1.875 10.4226 2.46764 11.4775 3.52253C12.5324 4.57742 13.125 6.00816 13.125 7.5C13.125 8.61252 12.7951 9.70006 12.177 10.6251C11.5589 11.5501 10.6804 12.2711 9.6526 12.6968C8.62476 13.1226 7.49376 13.234 6.40262 13.0169C5.31148 12.7999 4.3092 12.2641 3.52253 11.4775C2.73586 10.6908 2.20013 9.68853 1.98309 8.59739C1.76604 7.50624 1.87744 6.37524 2.30318 5.34741C2.72892 4.31957 3.44989 3.44107 4.37492 2.82299ZM7.03125 7.69219L9.65156 10.3125L10.3125 9.65156L7.96875 7.30312V3.28125H7.03125V7.69219Z" fill="#1E1E1E" />
-                                                                </g>
-                                                                <defs>
-                                                                    <clipPath id="clip0_4238_1233">
-                                                                        <rect width="15" height="15" fill="white" />
-                                                                    </clipPath>
-                                                                </defs>
-                                                            </svg>
-                                                            3 Minute Read
+                                                                {% include 'components/media/custom-svg.html' with icon_name='clock' fill_color='#1E1E1E' %}
+                                                            {{mas_visto.tiempo_lectura}} mins
                                                         </li>
                                                         <li>
-                                                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <rect y="4.17773" width="1.85714" height="8.35714" fill="#1E1E1E" />
-                                                                <rect x="11.1426" y="6.96387" width="1.85714" height="5.57143" fill="#1E1E1E" />
-                                                                <rect x="5.57227" y="0.463867" width="1.85714" height="12.0714" fill="#1E1E1E" />
-                                                            </svg>
-                                                            1.9k views
+                                                            {% include "components/media/custom-svg.html" with icon_name="bar-chart" fill_color="#1E1E1E" %}
+                                                            {{mas_visto.vistas}} vistas
                                                         </li>
                                                     </ul>
-                                                    <h4 class="heading-title"><a class="title-animation text-start" href="#">These Doctors Have the Best Tips for Staying Healthy <br> While Traveling—And They Actually Work</a></h4>
-                                                    <a href="#" class="text-btn color-two">Continue Reading</a>
+                                                    <h4 class="heading-title"><a class="title-animation text-start" href="{% url "blog" mas_visto.slug %}">{{ mas_visto.titulo }}</a></h4>
+                                                    <a href="{% url "blog" mas_visto.slug %}" class="text-btn color-two">Leer Más</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -53,221 +40,23 @@
                             <div class="featured-post area-2 latest-news3 tp-section-gap3Top">
                                 <div class="post-section-inner">
                                     <div class="row g-5">
+                                        {% for noticia in noticias %}
                                         <div class="col-lg-4 col-md-6">
                                             <div class="eblog-featured-news style-two small">
                                                 <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/50.jpg" alt=""></a>
+                                                    <a href="#"><img src="{{noticia.banner.url}}" alt="{{noticia.titulo}}"></a>
                                                 </div>
                                                 <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">Indonesia</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">15 of the Most Underrated Summer Destinations Bali</a></h4>
+                                                    <p class="tag mb--15 color-two">{{noticia.categoria.nombre}}</p>
+                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="{% url "blog" noticia.slug %}">{{noticia.titulo}}</a></h4>
                                                     <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
+                                                        <li class="author"><span>BY</span>{{noticia.autor}} - {{noticia.fecha_publicacion|date:"d M, Y"}} </li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-two small">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/51.jpg" alt=""></a>
-                                                </div>
-                                                <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">Indonesia</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">I Always Take a Solo Trip at the Beginning of a New Year</a></h4>
-                                                    <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-two small">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/52.jpg" alt=""></a>
-                                                </div>
-                                                <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">Japan</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">I Travel Alone Extensively: Here's What I've Learned</a></h4>
-                                                    <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-two small">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/53.jpg" alt=""></a>
-                                                </div>
-                                                <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">Indonesia</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">The Throwback Item I Bring With Me on Every Single</a></h4>
-                                                    <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-two small">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/54.jpg" alt=""></a>
-                                                </div>
-                                                <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">Indonesia</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Our Editors Spill Their All-Time Favorite cation Destina</a></h4>
-                                                    <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-two small">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/55.jpg" alt=""></a>
-                                                </div>
-                                                <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">Italy</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">What to Wear to Every Summer Bachelorette Party</a></h4>
-                                                    <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-two small">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/56.jpg" alt=""></a>
-                                                </div>
-                                                <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">Indonesia</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working Place Relationship </a></h4>
-                                                    <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-two small">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/57.jpg" alt=""></a>
-                                                </div>
-                                                <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">Indonesia</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">This Is Why I Delete My Social Media Apps When I</a></h4>
-                                                    <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-two small">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/58.jpg" alt=""></a>
-                                                </div>
-                                                <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">Indonesia</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">17 Airbnbs That Belong in a Nancy Meyers Movie</a></h4>
-                                                    <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-two small">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/59.jpg" alt=""></a>
-                                                </div>
-                                                <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">Indonesia</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">17 Airbnbs That Belong in a Nancy Meyers Movie</a></h4>
-                                                    <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-two small">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/60.jpg" alt=""></a>
-                                                </div>
-                                                <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">Indonesia</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">8 Spots to Get Away With Girlfriends This Summer</a></h4>
-                                                    <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-two small">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/61.jpg" alt=""></a>
-                                                </div>
-                                                <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">Indonesia</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">10 Travel Hacks to Save on Your Next Vacation</a></h4>
-                                                    <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-two small">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/62.jpg" alt=""></a>
-                                                </div>
-                                                <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">India</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Why Camping May Just Be the Best Pandemic Trip Is</a></h4>
-                                                    <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-two small">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/63.jpg" alt=""></a>
-                                                </div>
-                                                <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">Japan</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Book It: 7 Nature Escapes That Will Help You Hit Reset</a></h4>
-                                                    <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="eblog-featured-news style-two small">
-                                                <div class="image-area">
-                                                    <a href="#"><img src="assets/images/blog/64.jpg" alt=""></a>
-                                                </div>
-                                                <div class="blog-content text-left">
-                                                    <p class="tag mb--15 color-two">Italy</p>
-                                                    <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Books That Will Give You Travel Vibes Even Though</a></h4>
-                                                    <ul class="blog-meta justify-content-start m--0">
-                                                        <li class="author"><span>BY</span>Elon Mask - 14 Jan, 2024 </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="button-area">
-                                                <a href="#" class="tp-btn btn-secondary m-auto">Load More</a>
-                                            </div>
-                                        </div>
+                                        {% endfor %}
+                                        
                                     </div>
                                 </div>
                             </div>
