@@ -9,13 +9,14 @@ from .models import Noticia, Categoria
 
 def index(request) -> HttpResponse:
     noticias = Noticia.objects.all().order_by('-id')[:15]
-    mas_visto = Noticia.objects.all().order_by('-vistas').first()
+    mas_vistos = Noticia.objects.all().order_by('-vistas')
     
     categorias = Categoria.objects.all()[:7]
     
     context = {
         'noticias': noticias,
-        'mas_visto': mas_visto,
+        'noticia_mas_vista': mas_vistos[0],
+        "noticias_populares": mas_vistos[1:5],
         'categorias': categorias,
     }
     
@@ -35,3 +36,16 @@ def blog(request, slug:str) -> HttpResponse:
 def not_found(request) -> HttpResponse:
     return render(request, template_name='screens/404.html', context={})
 # Create your views here.
+
+def noticias(request) -> HttpResponse:
+    noticias_list = Noticia.objects.all().order_by('-id')
+    paginator = Paginator(noticias_list, 10)  # Show 10 noticias per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+    }
+
+    return render(request, template_name='screens/noticias.html', context=context)

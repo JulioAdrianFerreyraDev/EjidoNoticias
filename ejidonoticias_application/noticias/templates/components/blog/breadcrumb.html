@@ -1,0 +1,17 @@
+    <div class="eblog-breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-inner text-center">
+                        <div class="meta">
+                            <a href="{% url "index" %}" class="prev">Inicio</a>
+                            <span>/</span>
+                            <a href="{% url "noticias" %}" class="next">Noticias</a>
+                            <span>/</span>
+                            <a href="#" class="last">{{ blog.titulo }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

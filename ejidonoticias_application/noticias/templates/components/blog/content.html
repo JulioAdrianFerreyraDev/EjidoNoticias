@@ -1,0 +1,45 @@
+{% load static %}
+<div class="eblog-hero-banner">
+                  
+                {% include "components/blog/banner.html" with blog=blog %}
+                 
+                  <p class="desc">{{ blog.contenido|safe }}</p>
+                  <div class="bottom-area">
+                    <div class="blog-actions">
+                      <div class="tag-area">
+                        <p>Tags:</p>
+                        <div class="button-tag">
+                          <ul>
+                            {% for tag in blog.tags.all %}
+                              <li>
+                                <a href="#">{{ tag.nombre }}</a>
+                                {% if not forloop.last %}<span>, </span>{% endif %}
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="social-area">
+                        <div class="social-title">
+                          <p>Compartir:</p>
+                        </div>
+                        <ul class="social-wrapper">
+                          <li>
+                            <a href="#">{% include 'components/media/custom-svg.html' with icon_name='facebook' fill_color='white' %}</a>
+                          </li>
+                          <li>
+                            <a href="#">{% include 'components/media/custom-svg.html' with icon_name='instagram' fill_color='white' %}</a>
+                          </li>
+                          <li>
+                            <a href="#">{% include 'components/media/svg-g-wrapper.html' with icon_name='twitter-x' fill_color='white' %}</a>
+                          </li>
+                          <li>
+                            <a href="#">{% include 'components/media/custom-svg.html' with icon_name='youtube' fill_color='white' %}</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    {% include "components/blog/author-section.html" %}
+                    {% include "components/blog/comment-form.html"%}
+                  </div>
+                </div>

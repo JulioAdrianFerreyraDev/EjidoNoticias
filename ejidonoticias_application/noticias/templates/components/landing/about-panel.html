@@ -1,0 +1,129 @@
+{% load static %}
+<div class="col-xl-3 tp-sticky-column-item">
+                        <div class="eblog-right-sidebar area-3">
+                            <div class="eblog-right-side-post author">
+                                <p class="title">Sobre Nosotros</p>
+                                <div class="featured-post sidebar">
+                                    <div class="image-area">
+                                        <a href="https://placehold.co/600x400.png" target="_blank" rel="noopener noreferrer">
+                                            <img src="https://placehold.co/600x400.png" alt="Logo Comunidad Ejidal San Pedro Jacuaro">
+                                        </a>
+                                    </div>
+                                    <div class="blog-content">
+                                        <ul class="social-wrapper">
+                                            <li>
+                                                <a href="#">
+                                                    {% include 'components/media/custom-svg.html' with icon_name='facebook' fill_color='black' %}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    {% include 'components/media/custom-svg.html' with icon_name='instagram' fill_color='black' %}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    {% include 'components/media/svg-g-wrapper.html' with icon_name='twitter-x' fill_color='black' %}
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    {% include 'components/media/custom-svg.html' with icon_name='youtube' fill_color='black' %}
+                                                </a>
+                                            </li>
+                                            
+                                        </ul>
+                                        <h4 class="title text-center">Ejido San Pedro Jacuaro</h4>
+                                        <p class="desc text-center">Somos una comunidad unida y comprometida con el desarrollo sostenible y la preservación de nuestras tradiciones.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eblog-right-side-post feature">
+                                <p class="title">Más Popular</p>
+                                <div class="featured-post sidebar">
+                                    <div class="image-area">
+                                        <a href="{% url "blog" slug=noticia_mas_vista.slug %}">
+                                            <img src="{{noticia_mas_vista.banner.url}}" alt="blog más visto: {{noticia_mas_vista.titulo}}">
+                                        </a>
+                                    </div>
+                                    <div class="blog-content">
+                                        <ul class="blog-meta">
+                                            <li>
+                                                {% include "components/media/custom-svg.html" with icon_name="clock" fill_color="black" %}
+                                                {{noticia_mas_vista.tiempo_lectura}} mins
+                                            </li>
+                                            <li>
+                                                {% include "components/media/custom-svg.html" with icon_name="bar-chart" fill_color="black" %}
+                                                {{noticia_mas_vista.vistas}} vistas
+                                            </li>
+                                        </ul>
+                                        <h5 class="heading-title"><a class="title-animation" href="#">{{noticia_mas_vista.titulo}} </a></h5>
+                                        <p class="author"><em>by</em> {{noticia_mas_vista.autor}}</p>
+                                        <a href="{% url "blog" slug=noticia_mas_vista.slug %}" class="text-btn color-two">Leer Más</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="eblog-right-side-post popular">
+                                <p class="title">Populeres</p>
+                                <div class="small-post">
+                                    {% for noticia in noticias_populares  %}
+                                     <div class="eblog-post-list-style">
+                                        <div class="image-area">
+                                            <a href="{% url "blog" slug=noticia.slug %}"><img src="{{ noticia.banner.url }}" alt="{{ noticia.titulo }}"></a>
+                                        </div>
+                                        <div class="blog-content">
+                                            <h4 class="heading-title"><a class="title-animation" href="#">{{noticia.titulo}}</a></h4>
+                                            <ul class="blog-meta">
+                                                <li>
+                                                    {% include "components/media/custom-svg.html" with icon_name="clock" fill_color="black" %} {{noticia.tiempo_lectura}} mins
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    
+                                </div>
+                            </div>
+                            <div class="eblog-right-side-post category2">
+                                <p class="title">Categorías</p>
+                                <div class="category-area">
+                                    <ul class="category-wrapper">
+                                        {% for categoria in categorias|slice:":3" %}
+                                         <li>
+                                            <div class="image-area">
+                                                <a href="#"><img  src="{{categoria.banner.url}}" alt="{{categoria.nombre}}"></a>
+                                                <p class="text text-center"><a href="#">{{categoria.nombre}}</a></p>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                            
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="eblog-right-side-post social-area">
+                                <p class="title">Síguenos</p>
+                                <div class="social-area area-2">
+                                    <ul class="social-wrapper">
+                                        <li>
+                                            <a href="#">
+                                                {% include "components/media/custom-svg.html" with icon_name="facebook" fill_color="black" %}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                {% include "components/media/custom-svg.html" with icon_name="instagram" fill_color="black" %}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                {% include "components/media/svg-g-wrapper.html" with icon_name="twitter-x" fill_color="black" %}
+                                            </a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                           
+                          
+                        </div>
+                    </div>

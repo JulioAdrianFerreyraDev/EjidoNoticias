@@ -1,0 +1,38 @@
+<div class="image-area position-relative">
+                    <a href="#"><img src="{{ blog.banner.url }}" alt="{{ blog.titulo }}" /></a>
+                     <h2 class="heading-title position-absolute start-0 bottom-0 ps-4 pb-3" style="color:white;">{{ blog.titulo }}</h2>
+                  </div>
+                  <div class="blog-content-area mt-5">
+                    <ul class="blog-meta">
+                      <li class="author">
+                        <span>BY</span>{{ blog.autor }} - {{ blog.fecha_publicacion }}
+                      </li>
+                      <li>
+                        {% include 'components/media/custom-svg.html' with icon_name='clock' fill_color='#1E1E1E' %}
+                        {{ blog.tiempo_lectura }} minutos
+                      </li>
+                      <li>
+                        {% include 'components/media/custom-svg.html' with icon_name='bar-chart' fill_color='#1E1E1E' %}
+                        {{ blog.vistas }} vistas
+                      </li>
+                    </ul>
+                    <div class="eblog-social">
+                      <p class="tag">Compartir:</p>
+                      <ul class="social-wrapper">
+                        <li>
+                          <a href="#">{% include 'components/media/custom-svg.html' with icon_name='facebook' fill_color='black' %}</a>
+                        </li>
+                        <li>
+                          <a href="#">{% include 'components/media/custom-svg.html' with icon_name='instagram' fill_color='black' %}</a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            {% include 'components/media/svg-g-wrapper.html' with icon_name='twitter-x' fill_color='black' %}
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">{% include 'components/media/custom-svg.html' with icon_name='youtube' fill_color='black' %}</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
