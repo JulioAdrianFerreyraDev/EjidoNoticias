@@ -1,4 +1,4 @@
-   
+{% load custom_tags %}   
     <section class="eblog-banner-area banner-three">
         <div class="banner-inner">
             <div class="swiper tp-bannerSlider2">
@@ -14,11 +14,11 @@
                                         <li class="author"><span>BY</span>{{noticia.autor}} - {{noticia.fecha_publicacion|date:"d M Y"}}</li>
                                         <li>
                                             {% include "components/media/custom-svg.html" with icon_name="clock" fill_color="white" %}
-                                            {{noticia.tiempo_lectura}} mins
+                                            {{noticia.tiempo_lectura|format_read_time}}
                                         </li>
                                         <li>
                                             {% include "components/media/custom-svg.html" with icon_name="bar-chart" fill_color="white" %}
-                                            {{noticia.vistas}} vistas
+                                            {{noticia.vistas|short_format }} vistas
                                         </li>
                                     </ul>
                                     <a href="{% url "blog" noticia.slug %}" class="text-btn color-two">Leer Más</a>

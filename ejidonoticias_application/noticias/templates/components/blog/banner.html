@@ -1,3 +1,4 @@
+{% load custom_tags %}
 <div class="image-area position-relative">
                     <a href="#"><img src="{{ blog.banner.url }}" alt="{{ blog.titulo }}" /></a>
                      <h2 class="heading-title position-absolute start-0 bottom-0 ps-4 pb-3" style="color:white;">{{ blog.titulo }}</h2>
@@ -5,15 +6,15 @@
                   <div class="blog-content-area mt-5">
                     <ul class="blog-meta">
                       <li class="author">
-                        <span>BY</span>{{ blog.autor }} - {{ blog.fecha_publicacion }}
+                        <span>BY</span>{{ blog.autor }} - {{ blog.fecha_publicacion|date:"d M Y" }}
                       </li>
                       <li>
                         {% include 'components/media/custom-svg.html' with icon_name='clock' fill_color='#1E1E1E' %}
-                        {{ blog.tiempo_lectura }} minutos
+                        {{ blog.tiempo_lectura|format_read_time }}
                       </li>
                       <li>
                         {% include 'components/media/custom-svg.html' with icon_name='bar-chart' fill_color='#1E1E1E' %}
-                        {{ blog.vistas }} vistas
+                        {{ blog.vistas|short_format }} vistas
                       </li>
                     </ul>
                     <div class="eblog-social">

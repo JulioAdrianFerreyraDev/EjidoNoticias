@@ -12,7 +12,7 @@
                           <ul>
                             {% for tag in blog.tags.all %}
                               <li>
-                                <a href="#">{{ tag.nombre }}</a>
+                                <a href="{% url "noticias" %}?tag={{ tag.slug }}">{{ tag.nombre }}</a>
                                 {% if not forloop.last %}<span>, </span>{% endif %}
                               </li>
                             {% endfor %}

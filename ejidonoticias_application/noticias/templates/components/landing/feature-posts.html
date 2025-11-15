@@ -1,4 +1,5 @@
     {% load static %}
+    {% load custom_tags %}
     <section class="eblog-featured-post-area area-2 tp-section-gapBottom">
         <div class="container">
             <div class="section-inner">
@@ -22,11 +23,11 @@
                                                         <li class="author"><span>BY</span>{{ noticia_mas_vista.autor }} - {{ noticia_mas_vista.fecha_publicacion|date:"d M Y" }}</li>
                                                         <li>
                                                                 {% include 'components/media/custom-svg.html' with icon_name='clock' fill_color='#1E1E1E' %}
-                                                            {{noticia_mas_vista.tiempo_lectura}} mins
+                                                            {{noticia_mas_vista.tiempo_lectura|format_read_time}}
                                                         </li>
                                                         <li>
                                                             {% include "components/media/custom-svg.html" with icon_name="bar-chart" fill_color="#1E1E1E" %}
-                                                            {{noticia_mas_vista.vistas}} vistas
+                                                            {{noticia_mas_vista.vistas|short_format}} vistas
                                                         </li>
                                                     </ul>
                                                     <h4 class="heading-title"><a class="title-animation text-start" href="{% url "blog" noticia_mas_vista.slug %}">{{ noticia_mas_vista.titulo }}</a></h4>

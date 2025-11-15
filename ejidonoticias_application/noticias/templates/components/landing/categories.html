@@ -11,11 +11,11 @@
                         <div class="swiper-slide">
                             <div class="category-wrapper area-2">
                                 <div class="image-area">
-                                    <a href="#">
+                                    <a href="{% url "noticias" %}?category={{ category.slug }}">
                                         <img src="{{ category.banner.url }}" alt="{{ category.nombre }}">
                                     </a>
                                     <div class="content-area text-center">
-                                        <p class="title text-center">{{ category.nombre }}</p>
+                                        <a href="{% url "noticias" %}?category={{ category.slug }}" class="title text-center">{{ category.nombre }}</a>
                                     </div>
                                 </div>
                             </div>

@@ -1,73 +1,28 @@
  {% load static %}
  <section class="eblog-bottom-post-area tp-section-gap">
       <div class="container">
-        <h3 class="section-title text-center">You Might Like This</h3>
+        <h3 class="section-title text-center">También Podría Interesarte</h3>
         <div class="section-inner">
           <div class="row g-5">
+           {% for noticia in noticias_relacionadas %}
             <div class="col-xl-3 col-lg-6 col-md-6">
               <div class="eblog-featured-news style-two small">
                 <div class="image-area">
-                  <a href="#"><img src="assets/images/blog/38.jpg" alt="" /></a>
+                  <a href="{% url "blog" slug=noticia.slug %}"><img src="{{noticia.banner_small.url}}" alt="{{noticia.titulo}}" /></a>
                 </div>
                 <div class="blog-content text-left">
-                  <p class="tag mb--15">Fashion</p>
-                  <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br /> Place Relationship</a></h4>
+                  <p class="tag mb--15">{{ noticia.categoria.nombre }}</p>
+                  <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="{% url "blog" slug=noticia.slug %}">{{ noticia.titulo }}</a></h4>
                   <ul class="blog-meta justify-content-start m--0">
                     <li class="author">
-                      <span>POR</span>Elon Mask - 14 Jan, 2024
+                      <span>POR</span>{{noticia.autor}} - {{ noticia.fecha_publicacion|date:"d M Y" }}
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-6 col-md-6">
-              <div class="eblog-featured-news style-two small">
-                <div class="image-area">
-                  <a href="#"><img src="assets/images/blog/39.jpg" alt="" /></a>
-                </div>
-                <div class="blog-content text-left">
-                  <p class="tag mb--15">Fashion</p>
-                  <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br /> Place Relationship</a></h4>
-                  <ul class="blog-meta justify-content-start m--0">
-                    <li class="author">
-                      <span>POR</span>Elon Mask - 14 Jan, 2024
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6">
-              <div class="eblog-featured-news style-two small">
-                <div class="image-area">
-                  <a href="#"><img src="assets/images/blog/40.jpg" alt="" /></a>
-                </div>
-                <div class="blog-content text-left">
-                  <p class="tag mb--15">Fashion</p>
-                  <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br /> Place Relationship</a></h4>
-                  <ul class="blog-meta justify-content-start m--0">
-                    <li class="author">
-                      <span>POR</span>Elon Mask - 14 Jan, 2024
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6">
-              <div class="eblog-featured-news style-two small">
-                <div class="image-area">
-                  <a href="#"><img src="assets/images/blog/41.jpg" alt="" /></a>
-                </div>
-                <div class="blog-content text-left">
-                  <p class="tag mb--15">Fashion</p>
-                  <h4 class="heading-title ml--0 mb--10 text-start"><a class="title-animation text-center" href="#">Efficient Rules How Working <br /> Place Relationship</a></h4>
-                  <ul class="blog-meta justify-content-start m--0">
-                    <li class="author">
-                      <span>POR</span>Elon Mask - 14 Jan, 2024
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            
+           {% endfor %}
           </div>
         </div>
       </div>

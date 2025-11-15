@@ -112,6 +112,19 @@ class Tag(models.Model):
     def __str__(self):
         return self.nombre
 
+class RedSocial(models.Model):
+    nombre = models.CharField(max_length=50, unique=True, verbose_name="Nombre")
+    url = models.URLField(verbose_name="URL")
+    svg_icono = models.CharField(max_length=100, verbose_name="Icono",
+                             help_text="Clase CSS del icono (ej: 'fab fa-facebook')", default="facebook")
+    class Meta:
+        verbose_name = "Red Social"
+        verbose_name_plural = "Redes Sociales"
+        ordering = ['nombre']
+
+    def __str__(self):
+        return self.nombre
+
 # --- Modelo Principal: Noticia ---
 class Noticia(models.Model):
     # ... (campos: titulo, slug, subtitulo, contenido) ...

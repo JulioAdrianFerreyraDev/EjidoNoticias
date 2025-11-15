@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 <div class="col-xl-3 tp-sticky-column-item">
                         <div class="eblog-right-sidebar area-3">
                             <div class="eblog-right-side-post author">
@@ -50,14 +51,14 @@
                                         <ul class="blog-meta">
                                             <li>
                                                 {% include "components/media/custom-svg.html" with icon_name="clock" fill_color="black" %}
-                                                {{noticia_mas_vista.tiempo_lectura}} mins
+                                                {{noticia_mas_vista.tiempo_lectura|format_read_time}}
                                             </li>
                                             <li>
                                                 {% include "components/media/custom-svg.html" with icon_name="bar-chart" fill_color="black" %}
-                                                {{noticia_mas_vista.vistas}} vistas
+                                                {{noticia_mas_vista.vistas|short_format}} vistas
                                             </li>
                                         </ul>
-                                        <h5 class="heading-title"><a class="title-animation" href="#">{{noticia_mas_vista.titulo}} </a></h5>
+                                        <h5 class="heading-title"><a class="title-animation" href="{% url "blog" slug=noticia_mas_vista.slug %}">{{noticia_mas_vista.titulo}} </a></h5>
                                         <p class="author"><em>by</em> {{noticia_mas_vista.autor}}</p>
                                         <a href="{% url "blog" slug=noticia_mas_vista.slug %}" class="text-btn color-two">Leer Más</a>
                                     </div>
@@ -75,7 +76,7 @@
                                             <h4 class="heading-title"><a class="title-animation" href="#">{{noticia.titulo}}</a></h4>
                                             <ul class="blog-meta">
                                                 <li>
-                                                    {% include "components/media/custom-svg.html" with icon_name="clock" fill_color="black" %} {{noticia.tiempo_lectura}} mins
+                                                    {% include "components/media/custom-svg.html" with icon_name="clock" fill_color="black" %} {{noticia.tiempo_lectura|format_read_time}}
                                                 </li>
                                             </ul>
                                         </div>
@@ -91,8 +92,8 @@
                                         {% for categoria in categorias|slice:":3" %}
                                          <li>
                                             <div class="image-area">
-                                                <a href="#"><img  src="{{categoria.banner.url}}" alt="{{categoria.nombre}}"></a>
-                                                <p class="text text-center"><a href="#">{{categoria.nombre}}</a></p>
+                                                <a href="{% url "noticias" %}?category={{ categoria.slug }}"><img  src="{{categoria.banner.url}}" alt="{{categoria.nombre}}"></a>
+                                                <p class="text text-center"><a href="{% url "noticias" %}?category={{ categoria.slug }}">{{categoria.nombre}}</a></p>
                                             </div>
                                         </li>
                                         {% endfor %}
@@ -115,6 +116,7 @@
                                             </a>
                                         </li>
                                         <li>
+                                            
                                             <a href="#">
                                                 {% include "components/media/svg-g-wrapper.html" with icon_name="twitter-x" fill_color="black" %}
                                             </a>

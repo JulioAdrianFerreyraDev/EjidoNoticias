@@ -16,13 +16,14 @@
             <div class="col-xl-9">
               <div class="left-side-post-area">
                 {% include "../components/blog/content.html" %}
+                
               </div>
             </div>
-            {% include "../components/blog/lateral-panel.html" %}
+            {% include "../components/blog/lateral-panel.html" with categorias=categorias noticias_populares=noticias_populares noticia_mas_popular=noticia_mas_popular %}
           </div>
         </div>
       </div>
     </section>
-    {% include "../components/blog/related-blogs.html" %}
+    {% include "../components/blog/related-blogs.html" with noticias_relacionadas=noticias_relacionadas %}
   </body>
 {% endblock %}
