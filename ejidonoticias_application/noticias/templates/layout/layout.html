@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -26,12 +26,12 @@
 
 
     {% include "components/shared/suscription-popup.html" %}
-    
+
     {% block content %}
     {% endblock content %}
 
     {% include 'components/shared/footer.html'%}
- 
+
     {% include 'components/shared/scroll-button.html' %}
 
 
@@ -49,6 +49,49 @@
     <script src="{% static 'assets/js/plugins/theia-sticky-sidebar.min.js' %}" defer></script>
 
     <script src="{% static 'assets/js/main.js' %}" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // 1. Selecciona los elementos por su ID y clase
+            const searchInput = document.getElementById('searchInput1');
+            const searchButton = document.querySelector('.search-close-icon');
+
+            // 2. Función reutilizable para redirigir
+            function redirectToSearch() {
+                // Obtiene el valor del input y quita espacios en blanco
+                const query = searchInput.value.trim();
+
+                // Solo redirige si el usuario escribió algo
+                if (query) {
+                    // Construye la URL. 
+                    // ¡CAMBIA '/blogs' por la URL de tu página de blogs!
+                    // 'q' es el nombre estándar para un query, pero puedes usar 'search', etc.
+                    const url = `/noticias?q=${encodeURIComponent(query)}`;
+
+                    // Redirige al navegador a la nueva URL
+                    window.location.href = url;
+                }
+            }
+
+            // 3. Añade el "listener" para el clic en el botón/icono
+            if (searchButton) {
+                searchButton.addEventListener('click', redirectToSearch);
+            }
+
+            // 4. Añade el "listener" para la tecla "Enter" en el input
+            if (searchInput) {
+                searchInput.addEventListener('keydown', function (event) {
+
+                    // Comprueba si la tecla presionada fue "Enter"
+                    if (event.key === 'Enter') {
+                        // Previene cualquier acción por defecto (como enviar un formulario)
+                        event.preventDefault();
+                        redirectToSearch();
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 

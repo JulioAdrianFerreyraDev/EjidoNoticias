@@ -5,16 +5,16 @@
                 <div class="swiper-wrapper">
                     {% for noticia in noticias %}
                     <div class="swiper-slide">
-                        <div class="banner-single banner-single-7 banner-bg" style=" background-image: url({{noticia.banner.url}});">
+                        <div class="banner-single banner-single-7 banner-bg" style=" background-image: url({{noticia.banner_medium.url}});">
                             <div class="container">
                                 <div class="banner-content blog-content">
                                     <p class="sub-title">{{noticia.categoria}}</p>
                                     <h2 class="heading-title"><a class="title-animation" href="{% url "blog" noticia.slug %}">{{noticia.titulo}}</a></h2>
                                     <ul class="blog-meta">
-                                        <li class="author"><span>BY</span>{{noticia.autor}} - {{noticia.fecha_publicacion}}</li>
+                                        <li class="author"><span>BY</span>{{noticia.autor}} - {{noticia.fecha_publicacion|date:"d M Y"}}</li>
                                         <li>
                                             {% include "components/media/custom-svg.html" with icon_name="clock" fill_color="white" %}
-                                            {{noticia.tiempo_lectura}} Minute Read
+                                            {{noticia.tiempo_lectura}} mins
                                         </li>
                                         <li>
                                             {% include "components/media/custom-svg.html" with icon_name="bar-chart" fill_color="white" %}

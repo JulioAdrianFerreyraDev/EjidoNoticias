@@ -5,8 +5,8 @@
                                 <p class="title">Sobre Nosotros</p>
                                 <div class="featured-post sidebar">
                                     <div class="image-area">
-                                        <a href="https://placehold.co/600x400.png" target="_blank" rel="noopener noreferrer">
-                                            <img src="https://placehold.co/600x400.png" alt="Logo Comunidad Ejidal San Pedro Jacuaro">
+                                        <a href="https://placehold.co/600x400.webp" target="_blank" rel="noopener noreferrer">
+                                            <img src="https://placehold.co/600x400.webp" alt="Logo Comunidad Ejidal San Pedro Jacuaro">
                                         </a>
                                     </div>
                                     <div class="blog-content">
@@ -43,7 +43,7 @@
                                 <div class="featured-post sidebar">
                                     <div class="image-area">
                                         <a href="{% url "blog" slug=noticia_mas_vista.slug %}">
-                                            <img src="{{noticia_mas_vista.banner.url}}" alt="blog más visto: {{noticia_mas_vista.titulo}}">
+                                            <img src="{{noticia_mas_vista.banner_small.url}}" alt="blog más visto: {{noticia_mas_vista.titulo}}">
                                         </a>
                                     </div>
                                     <div class="blog-content">
@@ -69,7 +69,7 @@
                                     {% for noticia in noticias_populares  %}
                                      <div class="eblog-post-list-style">
                                         <div class="image-area">
-                                            <a href="{% url "blog" slug=noticia.slug %}"><img src="{{ noticia.banner.url }}" alt="{{ noticia.titulo }}"></a>
+                                            <a href="{% url "blog" slug=noticia.slug %}"><img src="{{ noticia.banner_small.url }}" alt="{{ noticia.titulo }}"></a>
                                         </div>
                                         <div class="blog-content">
                                             <h4 class="heading-title"><a class="title-animation" href="#">{{noticia.titulo}}</a></h4>
